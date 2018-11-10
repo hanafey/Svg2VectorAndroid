@@ -1,5 +1,7 @@
 package com.vector.svg2vectorandroid;
 
+import java.io.IOException;
+
 /**
  * Created by ravi on 19/12/17.
  */
@@ -13,9 +15,12 @@ public class Runner {
         }
 
         String sourceDirectory = args[0];
-        if(null != sourceDirectory && !sourceDirectory.isEmpty()){
+
+        try {
             SvgFilesProcessor processor = new SvgFilesProcessor(sourceDirectory);
             processor.process();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
