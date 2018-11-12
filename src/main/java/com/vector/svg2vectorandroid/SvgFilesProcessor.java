@@ -19,6 +19,7 @@ public class SvgFilesProcessor {
     private Path destinationVectorPath;
     private String extention;
     private String extentionSuffix;
+    private Transformer transformer;
 
     public SvgFilesProcessor(String sourceSvgDirectory) throws IOException {
         this(sourceSvgDirectory, null, "xml", "");
@@ -26,6 +27,11 @@ public class SvgFilesProcessor {
 
     public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory) throws IOException {
         this(sourceSvgDirectory, destinationVectorDirectory, "xml", "");
+    }
+
+    public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory, Transformer transformer) throws IOException {
+        this(sourceSvgDirectory, destinationVectorDirectory, "xml", "");
+        this.transformer = transformer;
     }
 
     public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory, String extention,
@@ -46,8 +52,7 @@ public class SvgFilesProcessor {
         this.extention = extention;
         this.extentionSuffix = extentionSuffix;
 
-        Path resultPath = Files.createDirectories(destinationVectorPath);
-        destinationVectorPath = resultPath;
+        destinationVectorPath = Files.createDirectories(destinationVectorPath);
     }
 
     public void process() throws IOException {
@@ -55,7 +60,7 @@ public class SvgFilesProcessor {
         Files.walkFileTree(sourceSvgPath, options, Integer.MAX_VALUE, new FileVisitor<Path>() {
 
             public FileVisitResult postVisitDirectory(Path dir,
-                                                      IOException exc) throws IOException {
+                                                      IOException exc) {
                 return FileVisitResult.CONTINUE;
             }
 
@@ -94,30 +99,21 @@ public class SvgFilesProcessor {
             tempFile.deleteOnExit();
             FileOutputStream tos = new FileOutputStream(tempFile);
             Svg2Vector.parseSvgToXml(source.toFile(), tos);
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(tempFile)));
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(targetFile)));
-            String line = null;
-            IOException ex = null;
-            try {
+            String line;
+            try (
+                    BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(tempFile)));
+                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(targetFile)))) {
                 while ((line = br.readLine()) != null) {
-                    bw.write(transform(line));
+                    if (transformer != null) {
+                        bw.write(transformer.transform(targetFile.getName(), line));
+                    } else {
+                        bw.write(transform(line));
+                    }
                     bw.write(System.lineSeparator());
                 }
             } finally {
-                try {
-                    br.close();
-                } catch (IOException ignored) {
-                    ex = ignored;
-                }
-                try {
-                    bw.close();
-                } catch (IOException ignored) {
-                    ex = ignored;
-                }
+                //noinspection ResultOfMethodCallIgnored
                 tempFile.delete();
-            }
-            if (ex != null) {
-                throw ex;
             }
         } else {
             System.out.println("Skipping file as its not svg " + source.getFileName().toString());
@@ -145,5 +141,4 @@ public class SvgFilesProcessor {
         svgBaseFile.append(extention);
         return new File(svgBaseFile.toString());
     }
-
 }

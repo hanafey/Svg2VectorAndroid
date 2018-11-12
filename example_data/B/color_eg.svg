@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="no"?><!-- Generator: Gravit.io -->
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate"
+     viewBox="0 0 1000 1000" width="1000" height="1000">
+    <switch>
+        <g>
+            <rect x="168" y="108" width="104" height="108" transform="matrix(1,0,0,1,0,0)" id="Rectangle"
+                  fill="rgb(200,30,30)" fill-opacity="0.83" vector-effect="non-scaling-stroke" stroke-width="4"
+                  stroke="rgb(0,0,0)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="2"/>
+            <ellipse vector-effect="non-scaling-stroke" cx="447" cy="318.5" rx="73" ry="55.5" id="Ellipse"
+                     fill="rgb(0,0,255)" stroke-width="8" stroke="rgb(255,255,0)" stroke-linejoin="miter"
+                     stroke-linecap="square" stroke-miterlimit="3"/>
+            <line x1="272" y1="216" x2="447" y2="318.5" id="Path" vector-effect="non-scaling-stroke" stroke-width="4"
+                  stroke="rgb(0,255,0)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+        </g>
+        <foreignObject requiredExtensions="http://ns.gravit.io/">
+            <gravitDesigner:gravitElementRef xmlns:gravitDesigner="http://ns.gravit.io/"
+                                             xlink:href="#3H5LBwGQGyb7ecTHiUECfKfYCziQaaCP"/>
+        </foreignObject>
+    </switch>
+    <gravitDesigner:gravitGraphicSource xmlns:gravitDesigner="http://ns.gravit.io/"
+                                        id="3H5LBwGQGyb7ecTHiUECfKfYCziQaaCP" version="1">
+        <![CDATA[eMKcwq1Ua8KPwppAFMO9K8ONbMOTT8OEDMKPWcOAwqRJEcKswqLDlnXDkcOVXcKMw5nDsBZEYGEQH8Oxwr/Dt8KiXcKjw73CssObwqQ8EjjDt8KewpMzwoc7HMOQD8OURMKZFXjCiEFfUXN+OAHCucOnUCsJw6IaLX3DlMKkecOpMcOIwqFQMgAqYsOUw4QMdMO5dAtYUsOGw7HDqcONSsKcZcKaFyDCs2AQw43CgTgnHMKDw6EkQgNfH8Ksw4BwHGbDmHsOOl8LF1pZDMKSwq/CscK1w7NqwoXDgx9jYUIHZ8Oow5rCnx/DhsOxw6hSwoPDkmtWe1PDr8OmHMKow7DDtcK1wqjDkTQDwqMNwok/MmfCnsKdw6bCrsKXw58yw60KNcKFK8KFw5ouwrDCj2DDrBsgVcK4FkYbasKWU3HCsmkTM8KMYsKjb8Osw7rDscOKIcKFLcOqw6gIXMOPw7d1F8KaZcKsw6tdwrvDt8K0w406w4p4IMK7w6EbwpvDnFvCvcKScm9DXcKyw7rDqMOdwogXw4dhVsOUw7F+JkTCkT/Ch0gawoQRBMKRw6FZwqlBLsOBw4nDsn/DiMKtw5bDpwhZwqDCj8KiwpLCrsODJsKkJl3Dh8KFS8Klw7NCw57CtE5rw6rCmXHDjxxgLCXCk3VKN0HCkXQqfBPDl0xbw69xL8OYPcKsbH/CoMK5VcOCw7dXecKXUHbCr1csw7HCtxczwplFwpdgIMKjdSxzwqQowqrDvlgpw4rCrMO9w6s7w4B3cCvCnsOZMsKWwq3CqsKYTnrChsKxw5PCnnvCpsK3wovCjH3Di20lwpohYcK0YMKAwqdrw75jw5VSEnzDoQ1lw7oyw7zDicK5wpvDsWTCs8KXwrtPwqxKM2xqI8KZwo/CjEchw6/CoMOFw6LCo2/DtMOvw6PDu8K5McO8K8OZSDXCt8OLw6nDlMOhV8Khwp3Dj8K2a8Ktbz47bMKpD0fCtGzCl8O3w45NwrLDncK0PcOEw47CtMOowpZVKMKXfCdywqTClz1VXTUJJsO2Vnk4wqnDnsOVOz3DpUQ9CMO2w4vCtjYWN8OKwozCuE/DokPCnkZBwqTDulrCosKtw4BadVocwqxuw7nDvsKQw7rDvnnDqcK2wrPCusKdwoTDkwgxKMKxw5YeFEbDsF/DucOCwqLDo2/DtMKyTUk=]]></gravitDesigner:gravitGraphicSource>
+</svg>

@@ -1,0 +1,11 @@
+# Example mapping file (this is a comment, ignored).
+
+
+android:width="(.*)"	48dp
+android:height="(.*)"	48dp
+
+# This will never be applied because first match ends lookup.
+android:width="(.*)"	5000dp
+
+android:fillColor="(#C81E1E)"	@color/a_color
+android:strokeColor="(#FFFF00)"	@color/b_color
