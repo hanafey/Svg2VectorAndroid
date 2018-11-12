@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?><!-- Generator: Gravit.io -->
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate"
+     viewBox="0 0 1000 1000" width="48" height="48">
+    <switch>
+        <g>
+            <circle vector-effect="non-scaling-stroke" cx="915" cy="914.9999999999999" r="85" id="LongOptionAvailable"
+                    fill="rgb(255,255,255)"/>
+            <g style="isolation:isolate" id="Main">
+                <g id="CursorPosition">
+                    <rect x="644.75" y="100" width="64" height="583.942" transform="matrix(1,0,0,1,0,0)" id="Rectangle"
+                          fill="rgb(255,255,255)"/>
+                    <polygon points="676.75,683.942,776.75,900,576.75,900" id="Polygon" fill="rgb(255,255,255)"/>
+                </g>
+                <g id="Arrow">
+                    <polygon points="223.25,480.564,429.75,629.129,429.75,332" id="Polygon" fill="rgb(255,0,0)"/>
+                    <rect x="427.75" y="435.564" width="240" height="90" transform="matrix(1,0,0,1,0,0)" id="Rectangle"
+                          fill="rgb(255,0,0)"/>
+                </g>
+            </g>
+        </g>
+        <foreignObject requiredExtensions="http://ns.gravit.io/">
+            <gravitDesigner:gravitElementRef xmlns:gravitDesigner="http://ns.gravit.io/"
+                                             xlink:href="#XCgS4Ho10lydm2vgwBI5M2V2kQEWo33s"/>
+        </foreignObject>
+    </switch>
+    <gravitDesigner:gravitGraphicSource xmlns:gravitDesigner="http://ns.gravit.io/"
+                                        id="XCgS4Ho10lydm2vgwBI5M2V2kQEWo33s" version="1">
+        <![CDATA[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]]></gravitDesigner:gravitGraphicSource>
+</svg>

@@ -10,24 +10,44 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    implementation 'commons-cli:commons-cli:1.4'
+    implementation 'com.android.tools:sdk-common:26.2.1'
+    implementation 'com.android.tools:common:26.2.1'
+}
+
 //create a single Jar with all dependencies
-task fatJar(type: Jar) {
+task uberJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Svg2VectorAndroid',
                 'Implementation-Version': version,
                 'Main-Class': 'com.vector.svg2vectorandroid.Runner'
     }
-    baseName = project.name
-    doFirst {
-        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
-    with jar
+    appendix = 'uber'
+    def jar_excludes = [
+            'kotlin',
+            'layoutlib/layoutlib-api',
+            'tools/repository',
+            '/builder-test-api',
+            'org.bouncycastle/',
+            'org.glassfish.jaxb/',
+            'com.google.code.findbugs/',
+            'com.google.errorprone/',
+            'org.jetbrains/',
+            'org.jvnet.staxex/',
+            'org.apache.httpcomponents/',
+            'com.android.tools.ddms/',
+            'com.android.tools/dvlib',
+            'com.android.tools.build/builder-model',
+            // NEEDED: 'com.google.guava/',
+            'com.google.protobuf/']
+    from sourceSets.main.output
+    from configurations.runtimeClasspath.
+            findAll { it.name.endsWith('jar') &&
+                    !jar_excludes.find {s -> it.path.contains(s) && println("Excluding ${it.name} (${it.size()} bytes)")}}.
+            collect { zipTree(it) }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'commons-cli:commons-cli:1.4'
-    compile 'com.android.tools:sdk-common:26.2.1'
-    compile 'com.android.tools:common:26.2.1'
-}
+
