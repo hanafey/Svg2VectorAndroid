@@ -1,4 +1,3 @@
-group 'geekyappz'
 version '1.0'
 
 apply plugin: 'java'
@@ -17,7 +16,7 @@ dependencies {
     implementation 'com.android.tools:common:26.2.1'
 }
 
-//create a single Jar with all dependencies
+//create a single Jar with all dependencie
 task uberJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Svg2VectorAndroid',
@@ -25,6 +24,8 @@ task uberJar(type: Jar) {
                 'Main-Class': 'com.vector.svg2vectorandroid.Runner'
     }
     appendix = 'uber'
+
+    // By trial and error uneeded jars on run path are determined. If path contains any of these, it is excluded.
     def jar_excludes = [
             'kotlin',
             'layoutlib/layoutlib-api',
@@ -42,12 +43,14 @@ task uberJar(type: Jar) {
             'com.android.tools.build/builder-model',
             // NEEDED: 'com.google.guava/',
             'com.google.protobuf/']
+
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
     from sourceSets.main.output
     from configurations.runtimeClasspath.
-            findAll { it.name.endsWith('jar') &&
-                    !jar_excludes.find {s -> it.path.contains(s) && println("Excluding ${it.name} (${it.size()} bytes)")}}.
-            collect { zipTree(it) }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+            findAll {
+                it.name.endsWith('jar') &&
+                        !jar_excludes.find { s -> it.path.contains(s) }
+            }.collect { zipTree(it) }
 }
 
 
