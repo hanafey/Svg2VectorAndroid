@@ -64,6 +64,26 @@ public class Runner {
                         .valueSeparator()
                         .build()
         );
+        options.addOption(
+                Option.builder()
+                        .longOpt("prefix")
+                        .desc("Prefix for output file names.")
+                        .required(false)
+                        .hasArg()
+                        .argName("string")
+                        .valueSeparator()
+                        .build()
+        );
+        options.addOption(
+                Option.builder()
+                        .longOpt("suffix")
+                        .desc("Suffix for output file names.")
+                        .required(false)
+                        .hasArg()
+                        .argName("string")
+                        .valueSeparator()
+                        .build()
+        );
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmdLine = null;
@@ -90,9 +110,11 @@ public class Runner {
 
         String sourceDirectory = cmdLine.getOptionValue('i');
         String targetDirectory = cmdLine.getOptionValue('o');
+        String namePrefix = cmdLine.getOptionValue("prefix", "");
+        String nameSuffix = cmdLine.getOptionValue("suffix", "");
 
         try {
-            SvgFilesProcessor processor = new SvgFilesProcessor(sourceDirectory, targetDirectory, transformer);
+            SvgFilesProcessor processor = new SvgFilesProcessor(sourceDirectory, targetDirectory, transformer, namePrefix, nameSuffix);
             processor.process();
         } catch (IOException e) {
             e.printStackTrace();

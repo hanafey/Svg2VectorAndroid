@@ -17,25 +17,17 @@ public class SvgFilesProcessor {
 
     private Path sourceSvgPath;
     private Path destinationVectorPath;
-    private String extention;
-    private String extentionSuffix;
+    private String namePrefix = "";
+    private String extentionSuffix = "";
     private Transformer transformer;
 
-    public SvgFilesProcessor(String sourceSvgDirectory) throws IOException {
-        this(sourceSvgDirectory, null, "xml", "");
-    }
 
-    public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory) throws IOException {
-        this(sourceSvgDirectory, destinationVectorDirectory, "xml", "");
-    }
-
-    public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory, Transformer transformer) throws IOException {
-        this(sourceSvgDirectory, destinationVectorDirectory, "xml", "");
-        this.transformer = transformer;
-    }
-
-    public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory, String extention,
-                             String extentionSuffix) throws IOException {
+    public SvgFilesProcessor(
+            String sourceSvgDirectory,
+            String destinationVectorDirectory,
+            Transformer transformer,
+            String namePrefix,
+            String nameSuffix) throws IOException {
 
         sourceSvgPath = Paths.get(sourceSvgDirectory);
         if (!Files.isDirectory(sourceSvgPath)) {
@@ -49,8 +41,9 @@ public class SvgFilesProcessor {
             destinationVectorPath = Paths.get(destinationVectorDirectory);
         }
 
-        this.extention = extention;
-        this.extentionSuffix = extentionSuffix;
+        this.transformer = transformer;
+        if (namePrefix != null) this.namePrefix = namePrefix;
+        if (nameSuffix != null) this.extentionSuffix = nameSuffix;
 
         destinationVectorPath = Files.createDirectories(destinationVectorPath);
     }
@@ -92,9 +85,17 @@ public class SvgFilesProcessor {
     }
 
     private void convertToVector(Path source, Path target) throws IOException {
+        String targetName = String.valueOf(target.getFileName());
         // convert only if it is .svg
-        if (source.getFileName().toString().endsWith(".svg")) {
-            File targetFile = getFileWithXMlExtention(target, extention, extentionSuffix);
+        if (targetName.endsWith(".svg")) {
+            Path parent = target.getParent();
+            StringBuilder fnb = new StringBuilder();
+            if (!namePrefix.isEmpty()) fnb.append(namePrefix);
+            fnb.append(targetName, 0, targetName.length() - 4);
+            if (!extentionSuffix.isEmpty()) fnb.append(extentionSuffix);
+            fnb.append(".xml");
+
+            File targetFile = new File(parent.toFile(), fnb.toString());
             File tempFile = File.createTempFile("svgt-", ".xml");
             tempFile.deleteOnExit();
             FileOutputStream tos = new FileOutputStream(tempFile);
@@ -128,17 +129,4 @@ public class SvgFilesProcessor {
         return line;
     }
 
-    private File getFileWithXMlExtention(Path target, String extention, String extentionSuffix) {
-        String svgFilePath = target.toFile().getAbsolutePath();
-        StringBuilder svgBaseFile = new StringBuilder();
-        int index = svgFilePath.lastIndexOf(".");
-        if (index != -1) {
-            String subStr = svgFilePath.substring(0, index);
-            svgBaseFile.append(subStr);
-        }
-        svgBaseFile.append(null != extentionSuffix ? extentionSuffix : "");
-        svgBaseFile.append(".");
-        svgBaseFile.append(extention);
-        return new File(svgBaseFile.toString());
-    }
 }
