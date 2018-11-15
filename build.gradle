@@ -45,12 +45,14 @@ task uberJar(type: Jar) {
             'com.google.protobuf/']
 
     exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+
     from sourceSets.main.output
-    from configurations.runtimeClasspath.
-            findAll {
-                it.name.endsWith('jar') &&
-                        !jar_excludes.find { s -> it.path.contains(s) }
-            }.collect { zipTree(it) }
+
+    from configurations.runtimeClasspath.findAll {
+        it.name.endsWith('jar') && !jar_excludes.find { s -> it.path.contains(s) }
+    }.collect {
+        zipTree(it)
+    }
 }
 
 

@@ -1,8 +1,14 @@
 # Example mapping file (this is a comment, ignored).
 
+# This matches file names with this string. First match wins, so the file unrestricted match is not applied.
+# If the order of lines was swapped the file specific match would never be reached.
+cursor_right	android:width="(.*)"	32dp
 
 android:width="(.*)"	48dp
 android:height="(.*)"	48dp
+
+# Never applied, above matches first.
+cursor_right	android:height="(.*)"	16dp
 
 # This will never be applied because first match ends lookup.
 android:width="(.*)"	5000dp

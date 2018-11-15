@@ -51,9 +51,9 @@ public class Transformer {
                 if (matcher.find()) {
                     if (matcher.groupCount() == 1) {
                         sb.setLength(0);
-                        sb.append(line.substring(0, matcher.start(1)));
+                        sb.append(line, 0, matcher.start(1));
                         sb.append(item.replacement);
-                        sb.append(line.substring(matcher.end(1)));
+                        sb.append(line, matcher.end(1), line.length());
                         line = sb.toString();
                         break;
                     }
