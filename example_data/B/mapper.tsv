@@ -15,3 +15,6 @@ android:width="(.*)"	5000dp
 
 android:fillColor="(#C81E1E)"	@color/a_color
 android:strokeColor="(#FFFF00)"	@color/b_color
+
+# Loose all alpha setting attributes. Instead color mapping will include alpha.
+android:.*Alpha=".*"	!!delete!!

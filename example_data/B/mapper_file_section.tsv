@@ -1,0 +1,18 @@
+# Example mapping file (this is a comment, ignored).
+
+# This matches file names with this string. First match wins, so the file unrestricted match is not applied.
+# If the order of lines was swapped the file specific match would never be reached.
+cursor_right	android:width="(.*)"	32dp
+
+cursor_left
+android:width="(.*)"	48dp
+android:height="(.*)"	48dp
+
+color_eg.svg
+android:width="(.*)"	480dp
+android:height="(.*)"	480dp
+
+.*
+android:width="(.*)"	@dimen/icon_width
+android:height="(.*)"	@dimen/icon_height
+
